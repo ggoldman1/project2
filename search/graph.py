@@ -58,7 +58,7 @@ class Graph:
         unravel_dict({'a': None, 'b': 'a', 'c': 'b'}, "c") -> [a, b, c]
 
         :param d: Dictionary mapping each node to its parent.
-        :param start: Key in `d` to start unravelling from.
+        :param start: Key in `d` to start unravelling from (this is the `end` parameter in `bfs(.)`).
         :return: "Unravled" dict.
         """
         unravelled = [start]
