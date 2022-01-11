@@ -42,13 +42,27 @@ class Graph:
         else:
 
             if end in child_parent:
-                return []
+                return unravel_dict(child_parent, end)
             return None
 
-    def unravel_dict(d: Dict) -> List:
+    def unravel_dict(self, d: Dict, start: str) -> List:
         """
-        
+        Unravel dict for bfs path finding.
+        unravel_dict({'a': None, 'b': 'a', 'c': 'b'}, "c") -> [a, b, c]
+
+        :param d: Dictionary mapping each node to its parent.
+        :param start: Key in `d` to start unravelling from.
+        :return: "Unravled" dict.
         """
+        unravelled = [start]
+        curr = start
+
+        while curr:
+            unravelled.append(d[curr])
+            curr = d[curr]
+
+        unravelled.pop(len(unravelled) - 1) # remove the `None` object
+        return unravelled[::-1] # reverse so we start at root and end at `end`
 
 
 
