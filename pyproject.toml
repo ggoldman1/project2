@@ -1,0 +1,17 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "search"
+authors = [{name = "Grant Goldman", email = "grant.goldman@ucsf.edu"}]
+readme = "README.md"
+license = {file = "LICENSE"}
+classifiers = ["License :: OSI Approved :: MIT License"]
+dynamic = ["version", "description"]
+dependencies = ["networkx==2.5", "pytest>=3.0"]
+
+[project.urls]
+Home = "https://github.com/ggoldman1/project2"
+
+

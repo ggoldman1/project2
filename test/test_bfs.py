@@ -28,7 +28,7 @@ def test_bfs_traversal():
                                       'Michael McManus', '32025019']
 
     with pytest.raises(ValueError):
-        b.bfs("Martin Kampman")
+        g.bfs("Martin Kampman")
 
 def test_bfs():
     """
