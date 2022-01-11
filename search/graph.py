@@ -23,6 +23,13 @@ class Graph:
         
         """
 
+        if start not in self.graph.nodes():
+            raise ValueError("You passed a start node that is not in the graph.")
+        if end and end not in self.graph.nodes():
+                raise ValueError("You passed a start node that is not in the graph.")
+        if start == end:
+            return [start]
+
         visited = [start]
         q = [start]
         child_parent = {start: None}
@@ -31,18 +38,18 @@ class Graph:
             curr = q.pop(0)
 
             for out_n in self.graph.neighbors(curr):
-                if out_n not in visited:
+                if out_n not in visited: # only process this node if we haven't seen it yet
                     q.append(out_n)
                     visited.append(out_n)
-                    if end:
+                    if end: # only need to do this if we are path finding
                         child_parent[out_n] = curr
 
         if not end:
             return visited
-        else:
 
+        else:
             if end in child_parent:
-                return unravel_dict(child_parent, end)
+                return self.unravel_dict(child_parent, end)
             return None
 
     def unravel_dict(self, d: Dict, start: str) -> List:
