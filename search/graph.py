@@ -22,34 +22,36 @@ class Graph:
         * If there is an end node and a path does not exist, return None
         
         """
-
+        # throw an error if starting at a node not in the graph
         if start not in self.graph.nodes():
             raise ValueError("You passed a start node that is not in the graph.")
+        # throw an error if ending at a node not in the graph
         if end and end not in self.graph.nodes():
                 raise ValueError("You passed a start node that is not in the graph.")
+        # case where we start and end at the same node, we don't need to bfs
         if start == end:
             return [start]
 
-        visited = [start]
+        visited = {start} # set for constant-time look up
         q = [start]
         child_parent = {start: None}
 
         while q:
             curr = q.pop(0)
 
-            for out_n in self.graph.neighbors(curr):
+            for out_n in self.graph.neighbors(curr): # all outgoing neighbors of `curr`
                 if out_n not in visited: # only process this node if we haven't seen it yet
                     q.append(out_n)
-                    visited.append(out_n)
+                    visited.add(out_n)
                     if end: # only need to do this if we are path finding
                         child_parent[out_n] = curr
 
-        if not end:
+        if not end: # if we are not searching for an end node, just return the nodes in BFS order
             return visited
 
         else:
             if end in child_parent:
-                return self.unravel_dict(child_parent, end)
+                return self.unravel_dict(child_parent, end) # this "unravels" the child_parent dict into a list
             return None
 
     def unravel_dict(self, d: Dict, start: str) -> List:
@@ -69,7 +71,7 @@ class Graph:
             curr = d[curr]
 
         unravelled.pop(len(unravelled) - 1) # remove the `None` object
-        return unravelled[::-1] # reverse so we start at root and end at `end`
+        return unravelled[::-1] # reverse so we start at `start` and end at `end`
 
 
 

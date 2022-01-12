@@ -12,13 +12,14 @@ def test_bfs_traversal():
     """
     g = graph.Graph("./data/tiny_network.adjlist")
 
+    # this came from running BFS on the graph in `networkx`, this is my ground truth
     assert g.bfs("Luke Gilbert") == ['Luke Gilbert', '33483487', '31806696', '31626775', '31540829', 'Martin Kampmann',
                                      'Neil Risch', 'Nevan Krogan', '32790644', '29700475', '34272374', '32353859',
                                      '30944313', 'Steven Altschuler', 'Lani Wu', 'Michael Keiser', 'Atul Butte',
                                      'Marina Sirota', 'Hani Goodarzi', '32036252', '32042149', '30727954', '33232663',
                                      '33765435', '33242416', '31395880', '31486345', 'Michael McManus', 'Charles Chiu',
                                      '32025019']
-
+    # this came from running BFS on the graph in `networkx`, this is my ground truth
     assert g.bfs("Marina Sirota") == ['Marina Sirota', '31486345', 'Michael Keiser', '33232663', 'Charles Chiu',
                                       'Martin Kampmann', '33242416', '33483487', '32790644', '31806696', '31626775',
                                       '31540829', 'Atul Butte', 'Luke Gilbert', 'Steven Altschuler', 'Lani Wu',
@@ -42,6 +43,7 @@ def test_bfs():
     """
     g = graph.Graph("./data/citation_network.adjlist")
 
+    # no path between these two
     assert g.bfs("Luke Gilbert", "Reza Abbasi-Asl") == None
 
     assert g.bfs("Tony Capra", "34771460") == ['Tony Capra', '32839541', 'Nadav Ahituv', '32728249', 'Yin Shen',
