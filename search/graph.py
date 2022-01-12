@@ -32,7 +32,7 @@ class Graph:
         if start == end:
             return [start]
 
-        visited = {start} # set for constant-time look up
+        visited = [start]
         q = [start]
         child_parent = {start: None}
 
@@ -42,12 +42,12 @@ class Graph:
             for out_n in self.graph.neighbors(curr): # all outgoing neighbors of `curr`
                 if out_n not in visited: # only process this node if we haven't seen it yet
                     q.append(out_n)
-                    visited.add(out_n)
+                    visited.append(out_n)
                     if end: # only need to do this if we are path finding
                         child_parent[out_n] = curr
 
         if not end: # if we are not searching for an end node, just return the nodes in BFS order
-            return visited
+            return list(visited) 
 
         else:
             if end in child_parent:
