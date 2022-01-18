@@ -47,7 +47,7 @@ class Graph:
                         child_parent[out_n] = curr
 
         if not end: # if we are not searching for an end node, just return the nodes in BFS order
-            return list(visited) 
+            return visited
 
         else:
             if end in child_parent:
